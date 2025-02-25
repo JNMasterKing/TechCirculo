@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Login System</title>
+    <link rel="stylesheet" href="SignIn.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container" id="loginForm">
+        <div class="form-header">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="school-icon"
+          >
+            <path d="m4 6 8-4 8 4" />
+            <path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2" />
+            <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4" />
+            <path d="M18 5v17" />
+            <path d="M6 5v17" />
+            <circle cx="12" cy="9" r="2" />
+          </svg>
+          <h1>Welcome Back To TechCirculo</h1>
+          <p>Sign in</p>
+        </div>
+
+        <div class="error-message" id="loginError"></div>
+
+        <form id="loginFormElement">
+          <div class="form-group">
+            <label for="loginRole">Role</label>
+            <select id="loginRole" required>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="alumni">Alumni</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="...@paruluniversity.ac.in"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input
+              type="password"
+              id="loginPassword"
+              required
+              placeholder="Enter 6-digit password"
+            />
+          </div>
+
+          <button type="submit">Sign In</button>
+        </form>
+
+        <p class="switch-form">
+          Don't have an account?
+          <a href="#" onclick="toggleForm('register')">Register</a>
+        </p>
+      </div>
+
+      <div class="form-container hidden" id="registerForm">
+        <div class="form-header">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="school-icon"
+          >
+            <path d="m4 6 8-4 8 4" />
+            <path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2" />
+            <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4" />
+            <path d="M18 5v17" />
+            <path d="M6 5v17" />
+            <circle cx="12" cy="9" r="2" />
+          </svg>
+          <h1>Create Account</h1>
+          <p>
+            Welcome To TechCirculo-A central point where education and
+            collaboration meet
+          </p>
+        </div>
+
+        <div class="error-message" id="registerError"></div>
+
+        <form id="registerFormElement">
+          <div class="form-group">
+            <label for="registerRole">Role</label>
+            <select id="registerRole" required>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="alumni">Alumni</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="registerEmail">Email</label>
+            <input type="email" id="registerEmail" required />
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input type="password" id="registerPassword" required />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" required />
+          </div>
+
+          <div class="form-group">
+            <label for="universityId">University ID</label>
+            <input type="text" id="universityId" required />
+          </div>
+
+          <button type="submit">Create Account</button>
+        </form>
+
+        <p class="switch-form">
+          Already have an account?
+          <a href="#" onclick="toggleForm('login')">Sign in</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // script.js
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("Welcome to MyGitHub Landing Page!");
+
+        // Smooth scrolling for navigation links
+        const links = document.querySelectorAll("nav ul li a");
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetSection = document.querySelector(targetId);
+            targetSection.scrollIntoView({ behavior: "smooth" });
+          });
+        });
+      });
+      const UNIVERSITY_EMAIL_DOMAIN = "@paruluniversity.ac.in";
+
+      // Form elements
+      const loginForm = document.getElementById("loginFormElement");
+      const registerForm = document.getElementById("registerFormElement");
+      const loginError = document.getElementById("loginError");
+      const registerError = document.getElementById("registerError");
+
+      // Toggle between login and register forms
+      function toggleForm(type) {
+        const loginContainer = document.getElementById("loginForm");
+        const registerContainer = document.getElementById("registerForm");
+
+        if (type === "register") {
+          loginContainer.classList.add("hidden");
+          registerContainer.classList.remove("hidden");
+        } else {
+          loginContainer.classList.remove("hidden");
+          registerContainer.classList.add("hidden");
+        }
+      }
+
+      // Show error message
+      function showError(element, message) {
+        element.textContent = message;
+        element.style.display = "block";
+      }
+
+      // Hide error message
+      function hideError(element) {
+        element.style.display = "none";
+      }
+
+      // Validate email domain
+      function validateEmail(email, role) {
+        if (role === "admin") return true;
+        return email.endsWith(UNIVERSITY_EMAIL_DOMAIN);
+      }
+
+      // Handle login form submission
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        hideError(loginError);
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        const role = document.getElementById("loginRole").value;
+
+        if (!validateEmail(email, role)) {
+          showError(loginError, "Please use your university email address");
+          return;
+        }
+
+        // Here you would typically make an API call to authenticate the user
+        console.log("Login:", {
+          email,
+          password,
+          role,
+        });
+        window.location.href = "Dashboard.html";
+      });
+
+      // Handle registration form submission
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        hideError(registerError);
+
+        const email = document.getElementById("registerEmail").value;
+        const password = document.getElementById("registerPassword").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const role = document.getElementById("registerRole").value;
+        const universityId = document.getElementById("universityId").value;
+
+        if (!validateEmail(email, role)) {
+          showError(registerError, "Please use your university email address");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showError(registerError, "Passwords do not match");
+          return;
+        }
+
+        // Here you would typically make an API call to register the user
+        console.log("Register:", {
+          email,
+          password,
+          role,
+          universityId,
+        });
+      });
+    </script>
+  </body>
+</html>
