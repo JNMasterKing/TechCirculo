@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechCirculo Dashboard</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/Dashboard.css" />
   </head>
   <body>
     <div class="dashboard">
@@ -53,7 +53,7 @@
             </svg>
             Dashboard
           </a>
-          <a href="#">
+          <a href="Community.html">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -71,7 +71,7 @@
             </svg>
             Communities
           </a>
-          <a href="#">
+          <a href="profile.html">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="24" 
@@ -93,7 +93,7 @@
 
             Profile
           </a>
-          <a href="#">
+          <a href="annoucements.html">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -108,8 +108,8 @@
               <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
               <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
             </svg>
-            Notifications
-            <span class="badge">5</span>
+            Annoucements
+            <span class="badge">0</span>
           </a>
         </nav>
       </aside>
@@ -117,7 +117,7 @@
       <!-- Main Content -->
       <main class="main-content">
         <!-- Header -->
-        <header class="header">
+        <header class="header" style="width:1200px">
           <div class="search">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -135,6 +135,7 @@
             </svg>
             <input type="text" placeholder="Search communities..." />
           </div>
+        
           <div class="user-menu">
             <button class="notifications-btn">
               <svg
@@ -151,20 +152,19 @@
                 <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
                 <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
               </svg>
-              <span class="badge">5</span>
+              <span class="badge">0</span>
             </button>
+        
             <div class="user-profile">
-              <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
-                alt="User Profile"
-              />
-              <span>Yash Mac</span>
+              <a href="profile.html"><img src="default-avatar.png" alt="User Profile" id="user-profile-pic" /></a>
+              <span id="user-name">Loading...</span>
               <div class="lo">
                 <a href="index.html" class="logout">Log Out</a>
               </div>
             </div>
           </div>
         </header>
+        
 
         
         <section class="communities">
@@ -324,8 +324,12 @@
               </div>
             </div>
         </div>
+        <div id="dashboard-posts">
+          <h2>Latest Posts</h2>
+          <ul id="dashboard-post-list"></ul>
+      </div>
         </section>
-
+        
         <!-- footer section -->
         <footer class="footer">
           <div class="footer-content">
@@ -357,9 +361,9 @@
     
             <div class="footer-section">
               <h4>Quick Links</h4>
-              <a href="#features">Features</a>
-              <a href="#communities">Communities</a>
-              <a href="#testimonials">Testimonials</a>
+              <a href="index.html">Features</a>
+              <a href="index.html">Communities</a>
+              <a href="index.html">Testimonials</a>
             </div>
     
             <div class="footer-section">
@@ -375,6 +379,6 @@
         
         
 
-    <script src="script.js"></script>
+    <script src="js/dashboard.js"></script>
   </body>
 </html>

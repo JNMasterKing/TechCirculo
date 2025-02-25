@@ -36,8 +36,7 @@ public class User {
 
     @Column(name = "username", nullable = false)
     private String username;
-@Column(name = "full_name", nullable = false)
-    private String fullName;
+
 
     @CreatedDate
     @LastModifiedDate

@@ -62,7 +62,7 @@ public class ProfileService {
         ProfileResponseDTO response = new ProfileResponseDTO();
         response.setId(profile.getId());
         response.setPhotoUrl(profile.getPhotoUrl());
-        response.setFullName(profile.getUser().getFullName());
+        response.setFullName(profile.getFullName());
         response.setEmail(profile.getUser().getEmail());
         response.setRole(profile.getUser().getRole().name());
         response.setSkills(profile.getSkills());

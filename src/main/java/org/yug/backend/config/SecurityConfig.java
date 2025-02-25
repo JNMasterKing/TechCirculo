@@ -17,32 +17,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.yug.backend.service.CustomOAuth2UserService;
 
 import java.util.List;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Autowired
-   private JwtFilter jwtFilter;
-
-    @Bean
-    public AuthenticationProvider authProvider() {
-        DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
-        return provider;
-    }
-
+    private JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.csrf(customizer -> customizer.disable())
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
                     corsConfig.setAllowedOrigins(List.of("http://localhost:5173")); // Change to your frontend URL
@@ -52,30 +42,40 @@ UserDetailsService userDetailsService;
                     return corsConfig;
                 }))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**","/communities","/index.html","login.html","register.html").permitAll() // Allow public access to auth endpoints
+                        .requestMatchers("/auth/**", "/communities", "/index.html", "/login.html", "/register.html").permitAll() // Allow public access to auth endpoints
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Admin-only endpoints
+                         // Secure all API endpoints
                         .anyRequest().authenticated() // Secure all other endpoints
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .userService(customOAuth2UserService())
+                        )
+                        .successHandler(oAuth2AuthenticationSuccessHandler())
+                )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
+    @Bean
+    public CustomOAuth2UserService customOAuth2UserService() {
+        return new CustomOAuth2UserService();
+    }
+
+    @Bean
+    public OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler() {
+        return new OAuth2AuthenticationSuccessHandler();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-
-
-
-
-
 }

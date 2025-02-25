@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechCirculo - A central point where education and collaboration meet</title>
-    <link rel="stylesheet" href="landing.css" />
+    <title>
+      TechCirculo - A central point where education and collaboration meet
+    </title>
+    <link rel="stylesheet" href="css/landing.css" />
   </head>
   <body>
     <!-- Navigation -->
@@ -357,4 +359,76 @@
       </div>
     </footer>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Sample data (Replace with API call if needed)
+      const communities = [
+        {
+          id: 1,
+          name: "Web Development",
+          description: "A community for web developers.",
+        },
+        {
+          id: 2,
+          name: "AI & ML",
+          description:
+            "Exploring artificial intelligence and machine learning.",
+        },
+        {
+          id: 3,
+          name: "Cybersecurity",
+          description: "Discussions on ethical hacking and security.",
+        },
+      ];
+
+      const testimonials = [
+        {
+          name: "Alice Johnson",
+          text: "TechCirculo helped me connect with like-minded professionals!",
+        },
+        { name: "Mark Smith", text: "A great platform for tech enthusiasts." },
+      ];
+
+      const communityContainer = document.getElementById("community-list");
+      const testimonialContainer = document.getElementById("testimonial-list");
+
+      // Load Communities
+      function loadCommunities() {
+        communityContainer.innerHTML = ""; // Clear existing content
+        communities.forEach((community) => {
+          const div = document.createElement("div");
+          div.classList.add("community-item");
+          div.innerHTML = `
+                <h3>${community.name}</h3>
+                <p>${community.description}</p>
+                <button onclick="joinCommunity(${community.id})">Join</button>
+            `;
+          communityContainer.appendChild(div);
+        });
+      }
+
+      // Load Testimonials
+      function loadTestimonials() {
+        testimonialContainer.innerHTML = "";
+        testimonials.forEach((testimonial) => {
+          const div = document.createElement("div");
+          div.classList.add("testimonial-item");
+          div.innerHTML = `
+                <p>"${testimonial.text}"</p>
+                <h4>- ${testimonial.name}</h4>
+            `;
+          testimonialContainer.appendChild(div);
+        });
+      }
+
+      // Join Community Functionality
+      window.joinCommunity = function (id) {
+        alert(`You joined community ID: ${id}`);
+      };
+
+      // Load data dynamically
+      loadCommunities();
+      loadTestimonials();
+    });
+  </script>
 </html>

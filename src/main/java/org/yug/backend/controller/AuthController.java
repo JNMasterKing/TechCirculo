@@ -18,8 +18,8 @@ import org.yug.backend.service.UserService;
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/auth")
-
 public class AuthController {
+
     @Autowired
     private UserService service;
 
@@ -27,7 +27,7 @@ public class AuthController {
     private JwtService jwtService;
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     // Register endpoint
     @PostMapping("/register")
@@ -46,4 +46,11 @@ public class AuthController {
         } else {
             throw new RuntimeException("Login failed: Invalid credentials");
         }
-    }}
+    }
+
+    // OAuth2 login endpoint
+    @GetMapping("/oauth2/login")
+    public ResponseEntity<String> oauth2Login(@RequestParam String token) {
+        return ResponseEntity.ok(token);
+    }
+}

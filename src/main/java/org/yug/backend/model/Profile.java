@@ -19,6 +19,9 @@ public class Profile {
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user; // One-to-one relationship with User
 
+    @Column(name = "full_name")
+    private String fullName; // Full name of the user
+
     @Column(name = "photo_url")
     private String photoUrl; // URL to the user's profile photo
 
