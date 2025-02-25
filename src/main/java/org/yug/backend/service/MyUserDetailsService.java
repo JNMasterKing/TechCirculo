@@ -11,6 +11,8 @@ import org.yug.backend.model.User;
 import org.yug.backend.model.UserPrincipal;
 import org.yug.backend.repository.UserRepository;
 
+import java.util.Optional;
+
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -20,16 +22,16 @@ public class MyUserDetailsService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 
-        User user= repo.findByUsername(username);
+        Optional<User> user= repo.findByEmail(email);
 
-        if (user==null) {
+        if (user.isEmpty()) {
             System.out.println("User 404");
             throw new UsernameNotFoundException("User 404");
         }
-        return new UserPrincipal(user);
+        return new UserPrincipal(user.orElse(null));
     }
 
 }

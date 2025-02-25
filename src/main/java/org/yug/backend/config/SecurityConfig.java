@@ -35,25 +35,25 @@ public class SecurityConfig {
         http.csrf(customizer -> customizer.disable())
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of("http://localhost:5173")); // Change to your frontend URL
+                    corsConfig.setAllowedOrigins(List.of("http://localhost:8084")); // Change to your frontend URL
                     corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     corsConfig.setAllowedHeaders(List.of("*"));
                     corsConfig.setAllowCredentials(true);
                     return corsConfig;
                 }))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/communities", "/index.html", "/login.html", "/register.html").permitAll() // Allow public access to auth endpoints
+                        .requestMatchers("/auth/**","/profile.html","/dashboard.html","/announcements.html","/css/**", "/js/**", "/images/**", "/static/**","Community.html", "/communities/**", "/index.html", "/login.html","SignIn.html", "/register.html").permitAll() // Allow public access to auth endpoints
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Admin-only endpoints
                          // Secure all API endpoints
                         .anyRequest().authenticated() // Secure all other endpoints
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .oauth2Login(oauth2 -> oauth2
-                        .userInfoEndpoint(userInfo -> userInfo
-                                .userService(customOAuth2UserService())
-                        )
-                        .successHandler(oAuth2AuthenticationSuccessHandler())
-                )
+//                .oauth2Login(oauth2 -> oauth2
+//                        .userInfoEndpoint(userInfo -> userInfo
+//                                .userService(customOAuth2UserService())
+//                        )
+//                        .successHandler(oAuth2AuthenticationSuccessHandler())
+//                )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
