@@ -38,9 +38,9 @@ logger.info("OAuth2 User: "+oAuth2User);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // Write the token to the response body
-        response.getWriter().write("{\"token\": \"" + token + "\"}");
-        response.getWriter().flush();
+        // Redirect to the frontend with the token as a query parameter
+        String redirectUrl = "http://localhost:8084/dashboard.html?token=" + token;
+        response.sendRedirect(redirectUrl);
     }
 
     /**
