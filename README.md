@@ -50,7 +50,8 @@ TechCirculo/
 ├── frontend/ # React frontend
 ├── database/ # SQL scripts and schema
 ├── README.md
-└── ...
+└── 
+
 
 
 
