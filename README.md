@@ -1,6 +1,3 @@
-# Creating the README.md file with the content provided
-
-readme_content = """
 # 🧩 TechCirculo - Student Community Platform
 
 TechCirculo is a web-based platform designed to connect students, faculty, alumni, and like-minded individuals within the college ecosystem. The platform fosters knowledge sharing, collaboration, and networking based on fields of interest like AI, Machine Learning, Web Development, and more.
