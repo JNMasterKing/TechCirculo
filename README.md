@@ -45,16 +45,15 @@ Simple and clean UI for seamless navigation and interaction.
 ---
 
 ## 📂 Project Structure (Simplified)
+
+```
 TechCirculo/
-├── backend/ # Spring Boot backend
-├── frontend/ # React frontend
-├── database/ # SQL scripts and schema
+├── backend/     # Spring Boot backend
+├── frontend/    # React frontend
+├── database/    # SQL scripts and schema
 ├── README.md
-└── 
-
-
-
-
+└──
+```
 
 ---
 
@@ -66,23 +65,25 @@ TechCirculo/
 cd backend
 mvn clean install
 mvn spring-boot:run
-
-
-💡 Future Enhancements
-🔐 JWT Authentication & Enhanced Security
-
-📨 Real-time Chat within Groups
-
-📱 Mobile App (React Native)
-
-📊 Admin Dashboard for Monitoring
-
-
-📃 License
-This project is for educational purposes and is not intended for commercial use.
-
-🌐 Demo
-Coming Soon! Stay tuned for live deployment.
+```
 
 ---
 
+## 💡 Future Enhancements
+
+- 🔐 JWT Authentication & Enhanced Security  
+- 📨 Real-time Chat within Groups  
+- 📱 Mobile App (React Native)  
+- 📊 Admin Dashboard for Monitoring  
+
+---
+
+## 📃 License
+
+This project is for educational purposes and is not intended for commercial use.
+
+---
+
+## 🌐 Demo
+
+Coming Soon! Stay tuned for live deployment.
