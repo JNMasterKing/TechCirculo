@@ -49,7 +49,7 @@ Simple and clean UI for seamless navigation and interaction.
 ```
 TechCirculo/
 ├── backend/     # Spring Boot backend
-├── frontend/    # React frontend
+├── frontend/    # HTML/CSS/JS frontend
 ├── database/    # SQL scripts and schema
 ├── README.md
 └──
